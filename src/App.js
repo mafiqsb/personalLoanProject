@@ -1,24 +1,35 @@
-import logo from './logo.svg';
+import React, {useState} from 'react'
+
+import PersonalInfo from './components/PersonalInfo.js';
+import Nav from './components/Nav';
+
+
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Image1 from './img.jpg'
+
 
 function App() {
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <>
+    <Nav />
+    <div>
+      <div className="carousel-inner">
+        <div>
+          <img className="w-100" src={Image1} alt="image" />
+
+        </div>
+      </div>
     </div>
+    <div className='container App'>
+      <br/>
+      <PersonalInfo />
+      
+    </div>
+    </>
+    
   );
 }
 

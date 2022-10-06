@@ -2,9 +2,29 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.taskBg {
+
+  border-radius: 6px;
+  margin-bottom: 20px;
+  padding: 20px 140px 10px 15px;
+  text-align: left;
+  font-size: 15px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+}
+
+.taskform {
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+
+.btns {
+  align-items: center;
+  justify-content: center;
+  padding-top: 20px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
