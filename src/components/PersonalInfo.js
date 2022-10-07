@@ -5,48 +5,41 @@ import {React,useState} from 'react';
 const PersonalInfo = () => {
 
 
-    const [info, setInfo] = useState([])
+  const[state, setState] = useState({
+        firstname: "",
+        lastname: "",
+        email: "",
+        username: "",
+        phone: "",
+        occupation: "",
+        city: "",
+        State: "",
+        zip: "",
+        radio: ""
+      })
 
-    const [instalm, setInstalm] = useState([])
-    const [value, setValue] = useState({
-        loanAmount : "1000",
-        loanTenure : "2",
-    })
+  const [value, setValue] = useState({
+      loanAmount : "1000",
+      loanTenure : "2",
+  })
 
-    const infoHandler = (e) => {
-      let formInfo = {
-        firstName: e.target.value,
-        secondName: e.target.value,
-        email: e.target.value,
-        username: e.target.value,
-        phone: e.target.value,
-        occupation: e.target.value,
-        city: e.target.value,
-        state: e.target.value,
-        zip: e.target.value
-      }
-      setInfo(formInfo)
-    }
+  const [instalm, setInstalm] = useState([])
+    
 
-    const InfoSubmitHandler = (e) => {
-    e.preventDefault();
-    let task = {...info};
-
-    console.log(task)
+const infoChange = (e) => { 
+  let newForm = {
+    [e.target.name]: e.target.value,
+  }
+  setState({newForm})
 }
 
-
-const inputHandler = (e) => {
-    let newEntry = {
-        value: e.target.value,
-        name: e.target.value
-      }
-
-    setValue({newEntry})
+const SubmitForm = (e) => {
+  e.preventDefault()
+  console.log(state)
+  
 }
 
-
-    const submitHandler = (e) => {
+  const  submitHandler = (e) => {
         e.preventDefault();
         calculate(
             value["loanAmount"],
@@ -54,6 +47,17 @@ const inputHandler = (e) => {
             3,
         )
     }
+  
+  const inputHandler = (e) => {
+      let newEntry = {
+          value: e.target.value,
+          name: e.target.value,
+          
+        }
+  
+      setValue({newEntry})
+  }
+  
     
     const calculate = (amount, years, rate) =>{
 
@@ -77,16 +81,18 @@ const inputHandler = (e) => {
     <div className='col-9 taskBg  offset-2'>
       <h2>Personal Info</h2>
       <br/>
-      <form onSubmit={InfoSubmitHandler}>
+      
+      <form onSubmit={(e) => SubmitForm(e)}>
         <div className="form row">
                 <div className="col-md-6 mb-3">          
                   <input 
                     type="text" 
                     className="form-control" 
                     id="validationDefault01" 
-                    placeholder="First name" 
-                    value={info}
-                    onChange={(e) => infoHandler(e)}
+                    placeholder="First name"
+                    name="firstName" 
+                    onChange={e => infoChange(e)}  
+                    value={state["firstname"]}
                     required 
                   />
                 </div>
@@ -97,9 +103,10 @@ const inputHandler = (e) => {
                     type="text" 
                     className="form-control" 
                     id="validationDefault02" 
-                    placeholder="Last name" 
-                    value={info}
-                    onChange={(e) => infoHandler(e)}
+                    placeholder="Last name"
+                    name="lastName" 
+                    onChange={e => infoChange(e)}   
+                      value={state["lastname"]}
                     required 
                   />
                 </div>
@@ -115,8 +122,9 @@ const inputHandler = (e) => {
                       id="validationDefaultUsername" 
                       placeholder="Email" 
                       aria-describedby="inputGroupPrepend2" 
-                      value={info}
-                      onChange={(e) => infoHandler(e)}
+                      name="email"
+                      onChange={e => infoChange(e)}   
+                      value={state["email"]}
                       required />
                   </div>
               </div>
@@ -132,8 +140,9 @@ const inputHandler = (e) => {
                     id="validationDefaultUsername" 
                     placeholder="Username" 
                     aria-describedby="inputGroupPrepend2"
-                    value={info}
-                    onChange={(e) => infoHandler(e)} 
+                    name="username"
+                    onChange={e => infoChange(e)}   
+                    value={state["username"]}
                     required 
                   />
                 </div>
@@ -150,8 +159,9 @@ const inputHandler = (e) => {
                       id="validationDefaultUsername" 
                       placeholder="Phone" 
                       aria-describedby="inputGroupPrepend2"
-                      value={info}
-                      onChange={(e) => infoHandler(e)} 
+                      name="phone"
+                      onChange={e => infoChange(e)}   
+                      value={state["phone"]} 
                       required
                     />
                   </div>
@@ -166,8 +176,9 @@ const inputHandler = (e) => {
                       id="validationDefaultUsername" 
                       placeholder="Occupation" 
                       aria-describedby="inputGroupPrepend2"
-                      value={info}
-                      onChange={(e) => infoHandler(e)} 
+                      name="occupation"
+                      onChange={e => infoChange(e)}   
+                      value={state["occupation"]}
                       required 
                     />
                   </div>
@@ -183,8 +194,9 @@ const inputHandler = (e) => {
                     className="form-control" 
                     id="validationDefault03" 
                     placeholder="City"
-                    value={info}
-                    onChange={(e) => infoHandler(e)} 
+                    name="City"
+                    onChange={e => infoChange(e)}   
+                    value={state["city"]} 
                     required 
                   />
                 </div>
@@ -195,8 +207,9 @@ const inputHandler = (e) => {
                     className="form-control" 
                     id="validationDefault04" 
                     placeholder="State"
-                    value={info} 
-                    onChange={(e) => infoHandler(e)} 
+                    name="State"
+                    onChange={e => infoChange(e)}   
+                    value={state["state"]}
                     required 
                   />
                 </div>
@@ -207,8 +220,9 @@ const inputHandler = (e) => {
                   className="form-control" 
                   id="validationDefault05" 
                   placeholder="Zip"
-                  value={info} 
-                  onChange={(e) => infoHandler(e)} 
+                  name="zip"
+                  onChange={e => infoChange(e)}   
+                  value={state["zip"]} 
                   required 
                   />
                 </div>
@@ -222,8 +236,8 @@ const inputHandler = (e) => {
                       type="radio" 
                       name="exampleRadios" 
                       id="exampleRadios1" 
-                      value={info}
-                      onChange={(e) => infoHandler(e)} 
+                      onChange={e => infoChange(e)}   
+                      value={state["radio"]} 
                       checked
                     />
                     <label className="form-check-label" htmlFor="exampleRadios1">
@@ -236,8 +250,8 @@ const inputHandler = (e) => {
                       type="radio" 
                       name="exampleRadios" 
                       id="exampleRadios2"
-                      onChange={(e) => infoHandler(e)}
-                      value={info}
+                      onChange={e => infoChange(e)}  
+                      value={state["radio"]} 
                     />
                     <label className="form-check-label" htmlFor="exampleRadios2">
                       Female
@@ -249,19 +263,19 @@ const inputHandler = (e) => {
                       type="radio" 
                       name="exampleRadios" 
                       id="exampleRadios3"
-                      onChange={(e) => infoHandler(e)} 
-                      value={info}
+                      onChange={e => infoChange(e)}   
+                      value={state["radio"]} 
                     />
                     <label className="form-check-label" htmlFor="exampleRadios3">
                       Others
                     </label>
                 </div>
                 <div className='col btns'>
-                <button type="submit" className="btn btn-warning btn-lg btn-block">Submit Info</button>
+                <button type="submit" className="btn btn-warning btn-lg btn-block" >Submit Info</button>
                 </div>  
             </div>
-            
-          </form>
+        </form>      
+         
           <br/>
 
           
